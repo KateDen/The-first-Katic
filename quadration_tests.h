@@ -4,7 +4,7 @@
 enum {N_TESTS = 7};
 
 void TEST_Solve_linear_equations ();
-void TEST_Solve_quad_equations ();
+void TEST_Solve_quad_equation ();
 bool is_equal (double x, double y);
 int TEST ();
 
@@ -30,7 +30,7 @@ void TEST_Solve_linear_equations ()
 
     for (int i = 0; i <= N_TESTS - 1; i++)
     {
-        enum answertags state = solve_linear_equations(coefb[i], coefc[i], &x);
+        enum answertags state = solve_linear_equation (coefb[i], coefc[i], &x);
 
         if (! state == sate_ans[i])
         {
