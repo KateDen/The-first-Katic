@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
-//#include "C:\projects\quadration_tests.c"
 
 /// Constants for different state of equation solutions
 enum answertags
@@ -46,6 +45,7 @@ Prints answer(s) for all cases
 */
 void print_answer (answertags answer, double xprint1, double xprint2);
 
+
 /*!
 Solves the linear equation and checks coefficients b and c
 \param [in] coefb, coefc gets the coefficients' values
@@ -63,7 +63,9 @@ Gets the coefficients' values and solves the equation for all cases
 */
 answertags solve_quad_equation (double coefa, double coefb, double coefc, double* x1, double* x2);
 
+
 #include "quadration_tests.h"
+
 /*!
 Displays the solver
 */
@@ -85,6 +87,7 @@ int main ()
 
     return 0;
 }
+
 
 int scan_variables (double* a, double* b, double* c)
 {
@@ -109,11 +112,13 @@ int scan_variables (double* a, double* b, double* c)
     return 0;
 }
 
+
 bool is_zero (double x)
 {
     const double epsilon = 1e-2;
     return fabs(x) < epsilon;
 }
+
 
 answertags solve_quad_equation (double coefa, double coefb, double coefc, double* x1, double* x2)
 {
@@ -149,6 +154,7 @@ answertags solve_quad_equation (double coefa, double coefb, double coefc, double
     return TWO_SOL;
 }
 
+
 answertags solve_linear_equations (double coefb, double coefc, double* x)
 {
     assert (isfinite(coefb));
@@ -168,6 +174,7 @@ answertags solve_linear_equations (double coefb, double coefc, double* x)
     *x = (-(coefc))/(coefb);
     return ONE_SOL_NONQUAD;
 }
+
 
 void print_answer (answertags answer, double xprint1, double xprint2)
 {
