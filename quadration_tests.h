@@ -1,34 +1,38 @@
 #include <stdio.h>
 #include <math.h>
 
+enum {N_TESTS = 7};
+
 void TEST_Solve_linear_equations ();
 void TEST_Solve_quad_equations ();
 bool is_equal (double x, double y);
 int TEST ();
 
+
 int TEST ()
 {
-    (TEST_Solve_quad_equations ());
-    (TEST_Solve_linear_equations ());
+    TEST_Solve_quad_equations ();
+    TEST_Solve_linear_equations ();
 
     return 0;
 }
 
+
 void TEST_Solve_linear_equations ()
 {
-       /// test number:    0   1      2        3        4    5  6
-    double coefb    [7] = {1,  2,     6,      6.2,     6452, 0, 0};
-    double coefc    [7] = {0,  1,     8,     -5.64,  988754, 4, 0};
-    double x_ans    [7] = {0, -0.50, -1.333, 0.909, -153.25, 0, 0};
-    double sate_ans [7] = {1,  1,     1,       1,       1,   0, 4};
+             /// test number:    0   1      2        3        4    5  6
+    double coefb    [N_TESTS] = {1,  2,     6,      6.2,     6452, 0, 0};
+    double coefc    [N_TESTS] = {0,  1,     8,     -5.64,  988754, 4, 0};
+    double x_ans    [N_TESTS] = {0, -0.50, -1.333, 0.909, -153.25, 0, 0};
+    int sate_ans    [N_TESTS] = {1,  1,     1,       1,       1,   0, 4};
 
     double x = 0;
 
-    for (int i = 0; i <= 6; i++)
+    for (int i = 0; i <= N_TESTS - 1; i++)
     {
         enum answertags state = solve_linear_equations(coefb[i], coefc[i], &x);
 
-        if (! is_equal (state, sate_ans[i]))
+        if (! state == sate_ans[i])
         {
             printf ("State error test %d\n", i);
         }
@@ -45,24 +49,24 @@ void TEST_Solve_linear_equations ()
         }
     }
 
+
 void TEST_Solve_quad_equations ()
 {
         /// test number:    0     1        2      3         4     5      6
-    double coefa     [7] = {8,    8,      2.9,   -58,       4,    8,   -125};
-    double coefb     [7] = {0,    0,     -6.8,   185,      -4,   -3,   0.65};
-    double coefc     [7] = {0,   -6,      -6,    -54,       1,    9,      9};
-    double x1_ans    [7] = {0,  0.866,   3.029,  0.323,    0.50,  0, -0.266};
-    double x2_ans    [7] = {0, -0.866,  -0.684,  2.864,     0,    0,  0.271};
-    double state_ans [7] = {2,    3,       3,     3,        2,    0,      3};
+    double coefa     [N_TESTS] = {8,    8,      2.9,   -58,       4,    8,   -125};
+    double coefb     [N_TESTS] = {0,    0,     -6.8,   185,      -4,   -3,   0.65};
+    double coefc     [N_TESTS] = {0,   -6,      -6,    -54,       1,    9,      9};
+    double x1_ans    [N_TESTS] = {0,  0.866,   3.029,  0.323,    0.50,  0, -0.266};
+    double x2_ans    [N_TESTS] = {0, -0.866,  -0.684,  2.864,     0,    0,  0.271};
+    int state_ans    [N_TESTS] = {2,    3,       3,     3,        2,    0,      3};
 
     double x1 = 0, x2 = 0;
-    int k = 0;
 
-    for (k = 0; k <= 6; k++)
+    for (int k = 0; k <= N_TESTS - 1; k++)
     {
         enum answertags state = solve_quad_equation (coefa[k], coefb[k], coefc[k], &x1, &x2);
 
-        if (! is_equal (state, state_ans[k]))
+        if (! state == state_ans[k])
         {
             printf ("State error test %d\n", k);
         }
@@ -80,7 +84,8 @@ void TEST_Solve_quad_equations ()
     }   }
 }
 
+
 bool is_equal (double x, double y)
 {
-    return is_zero(y - x);
+    return is_zero (y - x);
 }
