@@ -52,7 +52,7 @@ Solves the linear equation and checks coefficients b and c
 \param [out] x gets the solution
 \return
 */
-answertags solve_linear_equations (double coefb, double coefc, double* x);
+answertags solve_linear_equation (double coefb, double coefc, double* x);
 
 
 /*!
@@ -155,7 +155,7 @@ answertags solve_quad_equation (double coefa, double coefb, double coefc, double
 }
 
 
-answertags solve_linear_equations (double coefb, double coefc, double* x)
+answertags solve_linear_equation (double coefb, double coefc, double* x)
 {
     assert (isfinite(coefb));
     assert (isfinite(coefc));
