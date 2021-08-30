@@ -130,7 +130,7 @@ answertags solve_quad_equation (double coefa, double coefb, double coefc, double
 
     if (is_zero (coefa))
     {
-        return solve_linear_equations (coefb, coefc, x1);
+        return solve_linear_equation (coefb, coefc, x1);
     }
 
     double D = pow (coefb,2) - 4.0*(coefa)*(coefc);                 /// Discriminant formula
